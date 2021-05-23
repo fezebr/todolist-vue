@@ -33,6 +33,8 @@
                 :tasks="tasks.filter((i) => i.status === doneStatus)"
                 @handle-status="handleStatus"
                 @delete-task="handleDeleteTask"
+                @edite-task="handleEditTask"
+                
               />
             </div>
           </div>
@@ -72,6 +74,14 @@ export default {
       const todoIndex = this.tasks.findIndex((item) => item.id === id);
       this.tasks[todoIndex].status = !this.tasks[todoIndex].status;
     },
+    //edite task
+    handleEditTask(id) {
+      console.log(id);
+      const todoIndex = this.tasks.findIndex((item) => item.id === id);
+      this.tasks[todoIndex].editInput = !this.tasks[todoIndex].editInput;
+    },
+
+    
   },
   name: "App",
   components: {
@@ -87,11 +97,11 @@ export default {
   },
   created() {
     this.tasks = [
-      { id: 1, text: "sleep", status: true },
-      { id: 2, text: "programming", status: false },
-      { id: 3, text: "run", status: false },
-      { id: 4, text: "walk", status: true },
-      { id: 5, text: "reading", status: true },
+      { id: 1, text: "sleep", status: true ,editInput:"true"},
+      { id: 2, text: "programming", status: false  ,editInput:"true"},
+      { id: 3, text: "run", status: false  ,editInput:"false"},
+      { id: 4, text: "walk", status: true ,editInput:"false" },
+      { id: 5, text: "reading", status: true  ,editInput:"false"},
     ];
     console.log("create");
   },
