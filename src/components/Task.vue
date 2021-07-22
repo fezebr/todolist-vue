@@ -37,7 +37,7 @@
       </button>
     </div>
   </div>
-  {{ task.editInput }}
+ 
 </template>
 
 <script>

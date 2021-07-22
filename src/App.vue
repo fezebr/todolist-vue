@@ -12,7 +12,9 @@
               <nav class="col-6 mb-3">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a
-                    class="nav-item nav-link active font-weight-bold"
+                    
+                    :class="['nav-item nav-link font-weight-bold' , !doneStatus ? 'active' : '' ]"
+                    
                     id="nav-home-tab"
                     @click="setStatus(false)"
                   >
@@ -20,7 +22,8 @@
                     <span class="badge badge-secondary">{{tasks.filter((i) => i.status == false).length}}</span>
                   </a>
                   <a
-                    class="nav-item nav-link font-weight-bold"
+                    :class="['nav-item nav-link font-weight-bold' , doneStatus ? 'active' : '' ]"
+                    
                     id="nav-profile-tab"
                     @click="setStatus(true)"
                   >
@@ -97,11 +100,11 @@ export default {
   },
   created() {
     this.tasks = [
-      { id: 1, text: "sleep", status: true ,editInput:"true"},
-      { id: 2, text: "programming", status: false  ,editInput:"true"},
-      { id: 3, text: "run", status: false  ,editInput:"false"},
-      { id: 4, text: "walk", status: true ,editInput:"false" },
-      { id: 5, text: "reading", status: true  ,editInput:"false"},
+      { id: 1, text: "sleep", status: true ,editInput:false},
+      { id: 2, text: "programming", status: false  ,editInput:false},
+      { id: 3, text: "run", status: false  ,editInput:false},
+      { id: 4, text: "walk", status: true ,editInput:false },
+      { id: 5, text: "reading", status: true  ,editInput:false},
     ];
     console.log("create");
   },
