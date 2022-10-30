@@ -16,32 +16,24 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    onSubmit(e) {
-      e.preventDefault();
-      const newTask = {
-        id: Math.floor(Math.random() * 1000000),
-        text: this.text,
-        status: false,
-      };
+<script setup>
+import { ref } from "@vue/reactivity";
 
-      if (!this.text) {
-        alert("text field id empty");
-      }
+const text = ref("");
+const emit = defineEmits(["add-task"]);
+const onSubmit = (e) => {
+  e.preventDefault();
+  const newTask = {
+    id: Math.floor(Math.random() * 1000000),
+    text: text.value,
+    status: false,
+  };
 
-      this.$emit("add-task", newTask);
-
-      this.text = "";
-    },
-  },
-  data() {
-    return {
-      text: "",
-    };
-  },
-  name: "AddTask",
-  components: {},
+  if (!text.value) {
+    alert("text field id empty");
+  } else {
+    emit("add-task", newTask);
+    text.value = "";
+  }
 };
 </script>

@@ -9,15 +9,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { defineProps } from "@vue/runtime-core";
 import Task from "./Task";
-export default {
-  methods: {
- 
-  },
-  name: "Tasks",
-  components: { Task },
-  props: ["tasks"],
-  emits: ["delete-task", "handle-status" ,"edite-task"],
-};
+
+defineProps({
+  tasks: Array,
+});
+defineEmits(["delete-task", "handle-status", "edite-task"]);
 </script>

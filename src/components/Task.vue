@@ -2,13 +2,12 @@
   <div
     class="d-flex justify-content-between align-items-center border rounded p-3"
   >
-   <div>
-         <div>{{ task.text }}</div>
-         <div v-if="task.editInput">
-              <input type="text" v-model="task.text" >
-         </div>
-   </div>
-    
+    <div>
+      <div>{{ task.text }}</div>
+      <div v-if="task.editInput">
+        <input type="text" v-model="task.text" />
+      </div>
+    </div>
 
     <div>
       <button
@@ -22,7 +21,6 @@
       <button
         type="button"
         class="btn btn-info btn-sm ml-1"
-
         @click="$emit('edite-task', task.id)"
       >
         edite
@@ -37,13 +35,11 @@
       </button>
     </div>
   </div>
- 
 </template>
 
-<script>
-export default {
-     
-  props: ["task"],
-  emits: ["delete-task", "handle-status", "edite-task"],
-};
+<script setup>
+defineProps({
+  task: Object,
+});
+defineEmits(["delete-task", "handle-status", "edite-task"]);
 </script>
