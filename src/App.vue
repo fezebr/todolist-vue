@@ -4,7 +4,7 @@
       <Header />
       <main>
         <section class="jumbotron">
-          <AddTask @add-task="addTask" />
+          <AddTask />
         </section>
         <div class="todosList">
           <div class="container">
@@ -14,37 +14,55 @@
                   <a
                     :class="[
                       'nav-item nav-link font-weight-bold',
-                      !doneStatus ? 'active' : '',
+                      doneStatus === 'all' ? 'active' : '',
                     ]"
                     id="nav-home-tab"
-                    @click="setStatus(false)"
+                    @click="setStatus('all')"
                   >
-                    undone
+                    all
                     <span class="badge badge-secondary">{{
-                      tasks.filter((i) => i.status == false).length
+                      allTasks.length
                     }}</span>
                   </a>
                   <a
                     :class="[
                       'nav-item nav-link font-weight-bold',
-                      doneStatus ? 'active' : '',
+                      doneStatus === 'unCompletedTasks' ? 'active' : '',
+                    ]"
+                    id="nav-home-tab"
+                    @click="setStatus('unCompletedTasks')"
+                  >
+                    undone
+                    <span class="badge badge-secondary">{{
+                      unCompletedTasks.length
+                    }}</span>
+                  </a>
+                  <a
+                    :class="[
+                      'nav-item nav-link font-weight-bold',
+                      doneStatus === 'completedTasks' ? 'active' : '',
                     ]"
                     id="nav-profile-tab"
-                    @click="setStatus(true)"
+                    @click="setStatus('completedTasks')"
                   >
                     done
                     <span class="badge badge-success">{{
-                      tasks.filter((i) => i.status == true).length
+                      completedTasks.length
                     }}</span>
                   </a>
                 </div>
               </nav>
 
               <Tasks
-                :tasks="tasks.filter((i) => i.status === doneStatus)"
+                :tasks="
+                  doneStatus === 'all'
+                    ? allTasks
+                    : doneStatus === 'completedTasks'
+                    ? completedTasks
+                    : unCompletedTasks
+                "
                 @handle-status="handleStatus"
                 @delete-task="handleDeleteTask"
-                @edite-task="handleEditTask"
               />
             </div>
           </div>
@@ -62,36 +80,30 @@ import Header from "./components/Header";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
 import { ref } from "@vue/reactivity";
+import { useTasksStore } from "./stores/tasks.store";
+import { computed } from "@vue/runtime-core";
+import { storeToRefs } from "pinia";
 
-const tasks = ref([
-  { id: 1, text: "sleep", status: true, editInput: false },
-  { id: 2, text: "programming", status: false, editInput: false },
-  { id: 3, text: "run", status: false, editInput: false },
-  { id: 4, text: "walk", status: true, editInput: false },
-  { id: 5, text: "reading", status: true, editInput: false },
-]);
-const doneStatus = ref(false);
-
-////// Add
-const addTask = (task) => tasks.value.push(task);
+const doneStatus = ref("all");
+const tasksStore = useTasksStore();
+const { allTasks, unCompletedTasks, completedTasks } = storeToRefs(tasksStore);
 
 ///// delete
-const handleDeleteTask = (id) =>
-  (tasks.value = tasks.value.filter((i) => i.id !== id));
+const handleDeleteTask = (id) => tasksStore.handleDeleteTask(id);
 
 ///// change tabs
-const setStatus = (status) => (doneStatus.value = status);
+const setStatus = (status) => {
+  doneStatus.value = status;
+};
 
-///// change status
-const handleStatus = (id) => {
-  const todoIndex = tasks.value.findIndex((item) => item.id === id);
-  tasks.value[todoIndex].status = !tasks.value[todoIndex].status;
-};
-//edite task
-const handleEditTask = (id) => {
-  const todoIndex = tasks.value.findIndex((item) => item.id === id);
-  tasks.value[todoIndex].editInput = !tasks.value[todoIndex].editInput;
-};
+// ///// change status
+const handleStatus = (id) => tasksStore.handleStatus(id);
+
+// // //edite task
+// const handleEditTask = (id) => {
+//   //   const todoIndex = tasks.value.findIndex((item) => item.id === id);
+//   //   tasks.value[todoIndex].editInput = !tasks.value[todoIndex].editInput;
+// };
 </script>
 
  

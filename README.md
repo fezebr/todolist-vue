@@ -1,3 +1,5 @@
+this repo updated for learning pinia :)
+
 # todolist
 
 ## Project setup

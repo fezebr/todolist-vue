@@ -18,21 +18,22 @@
 
 <script setup>
 import { ref } from "@vue/reactivity";
+import { useTasksStore } from "../stores/tasks.store";
 
 const text = ref("");
-const emit = defineEmits(["add-task"]);
+
+const tasksStore = useTasksStore();
+
 const onSubmit = (e) => {
   e.preventDefault();
-  const newTask = {
-    id: Math.floor(Math.random() * 1000000),
-    text: text.value,
-    status: false,
-  };
 
-  if (!text.value) {
-    alert("text field id empty");
-  } else {
-    emit("add-task", newTask);
+  if (!text.value) alert("text field id empty");
+  else {
+    tasksStore.addTask({
+      id: Math.floor(Math.random() * 1000000),
+      text: text.value,
+      status: false,
+    });
     text.value = "";
   }
 };
