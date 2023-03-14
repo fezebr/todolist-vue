@@ -10,6 +10,7 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "pinia": "^2.0.23",
+    "pinia-plugin-persistedstate": "^2.3.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {

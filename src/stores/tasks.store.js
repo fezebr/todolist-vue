@@ -1,15 +1,17 @@
 import { defineStore } from "pinia";
 
 export const useTasksStore = defineStore("tasksStore", {
-  state: () => ({
-    tasks: [
-      { id: 1, text: "sleep", status: true },
-      { id: 2, text: "programming", status: false },
-      { id: 3, text: "run", status: false },
-      { id: 4, text: "walk", status: true },
-      { id: 5, text: "reading", status: true },
-    ],
-  }),
+  state: () => {
+    return {
+      tasks: [
+        { id: 1, text: "sleep", status: true },
+        { id: 2, text: "programming", status: false },
+        { id: 3, text: "run", status: false },
+        { id: 4, text: "walk", status: true },
+        { id: 5, text: "reading", status: true },
+      ],
+    };
+  },
 
   getters: {
     allTasks: (state) => {
@@ -34,4 +36,5 @@ export const useTasksStore = defineStore("tasksStore", {
       this.tasks[todoIndex].status = !this.tasks[todoIndex].status;
     },
   },
+  persist: true,
 });
