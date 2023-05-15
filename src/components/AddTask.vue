@@ -1,16 +1,19 @@
 <template>
-  <div class="container d-flex flex-column align-items-center">
-    <h1 class="jumbotron-heading">Welcome!</h1>
-    <p class="lead text-muted">To get started, add some items to your list:</p>
-    <form @submit="onSubmit" class="form-inline">
-      <div class="form-group">
+  <div
+    class="fixed bottom-0 bg-white p-4 left-0 right-0 md:static md:my-5 md:bg-transparent md:px-0"
+  >
+    <form @submit.prevent="onSubmit">
+      <div class="flex justify-between px-4 md:px-0">
         <input
+          class="placeholder:text-white bg-slate-300 rounded-xl px-7 w-full mr-1"
           type="text"
-          class="form-control mx-sm-3"
           placeholder="i want to do ..."
           v-model="text"
         />
-        <button class="btn btn-primary">add</button>
+        <button class="bg-slate-300 p-4 rounded-full">
+          <!-- <i class="fa-solid fa-user w-2 h-2"></i> -->
+          <font-awesome-icon icon="fa-solid fa-comments" class="text-white" />
+        </button>
       </div>
     </form>
   </div>
@@ -24,9 +27,7 @@ const text = ref("");
 
 const tasksStore = useTasksStore();
 
-const onSubmit = (e) => {
-  e.preventDefault();
-
+const onSubmit = () => {
   if (!text.value) alert("text field id empty");
   else {
     tasksStore.addTask({

@@ -1,45 +1,31 @@
 <template>
-  <div v-for="task in tasks" :key="task.id" class="col-6 mb-2">
+  <div v-for="task in tasks" :key="task.id">
     <div
-      class="
-        d-flex
-        justify-content-between
-        align-items-center
-        border
-        rounded
-        p-3
-      "
+      class="border rounded-2xl border-slate-400 p-5 my-3 flex justify-between"
     >
       <div>
         <div>{{ task.text }}</div>
-        <!-- <div v-if="task.editInput">
-          <input type="text" v-model="task.text" />
-        </div> -->
       </div>
 
       <div>
-        <button
-          type="button"
-          class="btn btn-danger btn-sm ml-1"
-          @click="$emit('delete-task', task.id)"
-        >
-          delete
+        <button type="button" @click="$emit('delete-task', task.id)">
+          <font-awesome-icon
+            icon="fa-solid fa-trash"
+            class="text-red-300 mr-1"
+          />
         </button>
 
-        <!-- <button
-          type="button"
-          class="btn btn-info btn-sm ml-1"
-          @click="$emit('edite-task', task.id)"
-        >
-          edite
-        </button> -->
-
-        <button
-          type="button"
-          class="btn btn-success btn-sm ml-1"
-          @click="$emit('handle-status', task.id)"
-        >
-          {{ task.status ? "unDone" : "Done" }}
+        <button type="button" @click="$emit('handle-status', task.id)">
+          <font-awesome-icon
+            v-if="task.status"
+            icon="fa-solid fa-check"
+            class="text-green-400 ml-2"
+          />
+          <font-awesome-icon
+            v-else
+            icon="fa-solid fa-xmark"
+            class="text-red-400 ml-2"
+          />
         </button>
       </div>
     </div>

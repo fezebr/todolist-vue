@@ -1,87 +1,75 @@
 <template>
-  <body>
-    <div class="App">
-      <Header />
-      <main>
-        <section class="jumbotron">
-          <AddTask />
-        </section>
-        <div class="todosList">
-          <div class="container">
-            <div class="d-flex flex-column align-items-center">
-              <nav class="col-6 mb-3">
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a
-                    :class="[
-                      'nav-item nav-link font-weight-bold',
-                      doneStatus === 'all' ? 'active' : '',
-                    ]"
-                    id="nav-home-tab"
-                    @click="setStatus('all')"
-                  >
-                    all
-                    <span class="badge badge-secondary">{{
-                      allTasks.length
-                    }}</span>
-                  </a>
-                  <a
-                    :class="[
-                      'nav-item nav-link font-weight-bold',
-                      doneStatus === 'unCompletedTasks' ? 'active' : '',
-                    ]"
-                    id="nav-home-tab"
-                    @click="setStatus('unCompletedTasks')"
-                  >
-                    undone
-                    <span class="badge badge-secondary">{{
-                      unCompletedTasks.length
-                    }}</span>
-                  </a>
-                  <a
-                    :class="[
-                      'nav-item nav-link font-weight-bold',
-                      doneStatus === 'completedTasks' ? 'active' : '',
-                    ]"
-                    id="nav-profile-tab"
-                    @click="setStatus('completedTasks')"
-                  >
-                    done
-                    <span class="badge badge-success">{{
-                      completedTasks.length
-                    }}</span>
-                  </a>
-                </div>
-              </nav>
-
-              <Tasks
-                :tasks="
-                  doneStatus === 'all'
-                    ? allTasks
-                    : doneStatus === 'completedTasks'
-                    ? completedTasks
-                    : unCompletedTasks
-                "
-                @handle-status="handleStatus"
-                @delete-task="handleDeleteTask"
-              />
-            </div>
+  <div>
+    <Header />
+    <main class="md:w-1/2 md:mx-auto">
+      <section>
+        <AddTask />
+      </section>
+      <div class="p-10 md:p-0 mb-7">
+        <nav class="flex justify-between">
+          <div
+            :class="[doneStatus === 'all' ? 'active' : '']"
+            @click="setStatus('all')"
+          >
+            <span
+              class="inline-flex items-center m-2 px-2 py-1 bg-blue-200 hover:bg-blue-300 rounded-full text-sm font-semibold text-blue-600"
+            >
+              <span> all </span>
+              <span class="ml-1">
+                {{ allTasks.length }}
+              </span>
+            </span>
           </div>
-        </div>
-      </main>
-    </div>
-  </body>
+          <div
+            :class="[doneStatus === 'unCompletedTasks' ? 'active' : '']"
+            @click="setStatus('unCompletedTasks')"
+          >
+            <span
+              class="inline-flex items-center m-2 px-2 py-1 bg-red-200 hover:bg-red-300 rounded-full text-sm font-semibold text-red-600"
+            >
+              <span> undone </span>
+              <span class="ml-1">
+                {{ unCompletedTasks.length }}
+              </span>
+            </span>
+          </div>
+          <div
+            :class="[doneStatus === 'completedTasks' ? 'active' : '']"
+            @click="setStatus('completedTasks')"
+          >
+            <span
+              class="inline-flex items-center m-2 px-2 py-1 bg-green-200 hover:bg-green-300 rounded-full text-sm font-semibold text-green-600"
+            >
+              <span> done </span>
+              <span class="ml-1">
+                {{ completedTasks.length }}
+              </span>
+            </span>
+          </div>
+        </nav>
+
+        <Tasks
+          :tasks="
+            doneStatus === 'all'
+              ? allTasks
+              : doneStatus === 'completedTasks'
+              ? completedTasks
+              : unCompletedTasks
+          "
+          @handle-status="handleStatus"
+          @delete-task="handleDeleteTask"
+        />
+      </div>
+    </main>
+  </div>
 </template>
 
 <script setup>
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
-import Header from "./components/Header";
-import AddTask from "./components/AddTask";
-import Tasks from "./components/Tasks";
+import Header from "./components/Header.vue";
+import AddTask from "./components/AddTask.vue";
+import Tasks from "./components/Tasks.vue";
 import { ref } from "@vue/reactivity";
 import { useTasksStore } from "./stores/tasks.store";
-import { computed } from "@vue/runtime-core";
 import { storeToRefs } from "pinia";
 
 const doneStatus = ref("all");
@@ -105,5 +93,3 @@ const handleStatus = (id) => tasksStore.handleStatus(id);
 //   //   tasks.value[todoIndex].editInput = !tasks.value[todoIndex].editInput;
 // };
 </script>
-
- 

@@ -1,9 +1,9 @@
 <template>
   <header>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <strong>Todo App</strong>
+    <div>
+      <div>
+        <a>
+          <h1 class="text-center text-4xl font-bold mt-5">Todo App</h1>
         </a>
       </div>
     </div>
@@ -13,6 +13,5 @@
 <script>
 export default {
   name: "Header",
-  components: {},
 };
 </script>
