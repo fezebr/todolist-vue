@@ -5,12 +5,12 @@
     <form @submit.prevent="onSubmit">
       <div class="flex justify-between px-4 md:px-0">
         <input
-          class="placeholder:text-white bg-slate-300 rounded-xl px-7 w-full mr-1"
+          class="placeholder:text-white bg-slate-500 rounded-xl px-7 w-full mr-1 text-white"
           type="text"
           placeholder="i want to do ..."
           v-model="text"
         />
-        <button class="bg-slate-300 p-4 rounded-full">
+        <button class="bg-slate-500 p-4 rounded-full">
           <!-- <i class="fa-solid fa-user w-2 h-2"></i> -->
           <font-awesome-icon icon="fa-solid fa-comments" class="text-white" />
         </button>

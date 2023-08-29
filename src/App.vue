@@ -1,53 +1,19 @@
 <template>
   <div>
     <Header />
-    <main class="md:w-1/2 md:mx-auto">
+    <main class="lg:w-1/3 md:w-1/2 md:mx-auto">
       <section>
         <AddTask />
       </section>
       <div class="p-10 md:p-0 mb-7">
-        <nav class="flex justify-between">
-          <div
-            :class="[doneStatus === 'all' ? 'active' : '']"
-            @click="setStatus('all')"
-          >
-            <span
-              class="inline-flex items-center m-2 px-2 py-1 bg-blue-200 hover:bg-blue-300 rounded-full text-sm font-semibold text-blue-600"
-            >
-              <span> all </span>
-              <span class="ml-1">
-                {{ allTasks.length }}
-              </span>
-            </span>
-          </div>
-          <div
-            :class="[doneStatus === 'unCompletedTasks' ? 'active' : '']"
-            @click="setStatus('unCompletedTasks')"
-          >
-            <span
-              class="inline-flex items-center m-2 px-2 py-1 bg-red-200 hover:bg-red-300 rounded-full text-sm font-semibold text-red-600"
-            >
-              <span> undone </span>
-              <span class="ml-1">
-                {{ unCompletedTasks.length }}
-              </span>
-            </span>
-          </div>
-          <div
-            :class="[doneStatus === 'completedTasks' ? 'active' : '']"
-            @click="setStatus('completedTasks')"
-          >
-            <span
-              class="inline-flex items-center m-2 px-2 py-1 bg-green-200 hover:bg-green-300 rounded-full text-sm font-semibold text-green-600"
-            >
-              <span> done </span>
-              <span class="ml-1">
-                {{ completedTasks.length }}
-              </span>
-            </span>
-          </div>
-        </nav>
-
+     
+        <TasksTabs
+          @setStatus="setStatus"
+          :doneStatus="doneStatus"
+          :allTasksLength="allTasks.length"
+          :unCompletedTasksLength="unCompletedTasks.length"
+          :completedTasksLength="completedTasks.length"
+        />
         <Tasks
           :tasks="
             doneStatus === 'all'
@@ -71,6 +37,7 @@ import Tasks from "./components/Tasks.vue";
 import { ref } from "@vue/reactivity";
 import { useTasksStore } from "./stores/tasks.store";
 import { storeToRefs } from "pinia";
+import TasksTabs from "./components/TasksTabs.vue";
 
 const doneStatus = ref("all");
 const tasksStore = useTasksStore();

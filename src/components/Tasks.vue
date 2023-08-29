@@ -18,13 +18,13 @@
         <button type="button" @click="$emit('handle-status', task.id)">
           <font-awesome-icon
             v-if="task.status"
-            icon="fa-solid fa-check"
-            class="text-green-400 ml-2"
-          />
-          <font-awesome-icon
-            v-else
             icon="fa-solid fa-xmark"
             class="text-red-400 ml-2"
+            />
+            <font-awesome-icon
+            v-else
+            icon="fa-solid fa-check"
+            class="text-green-400 ml-2"
           />
         </button>
       </div>
