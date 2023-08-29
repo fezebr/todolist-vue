@@ -6,8 +6,7 @@
       @click="$emit('setStatus', `${status.filter}`)"
     >
       <span
-        class="inline-flex items-center m-2 px-2 py-1 rounded-full text-sm font-semibold"
-        :class="`text-${status.color}-600 bg-${status.color}-200 hover:bg-${status.color}-300`"
+        :class="`inline-flex items-center m-2 px-2 py-1 rounded-full text-sm font-semibold text-${status.color}-600 bg-${status.color}-200 hover:bg-${status.color}-300`"
       >
         <span> {{ status.name }} </span>
         <span class="ml-1">
