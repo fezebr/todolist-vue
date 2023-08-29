@@ -6,7 +6,8 @@
       @click="$emit('setStatus', `${status.filter}`)"
     >
       <span
-        :class="`inline-flex items-center m-2 px-2 py-1 rounded-full text-sm font-semibold text-${status.color}-600 bg-${status.color}-200 hover:bg-${status.color}-300`"
+        class="inline-flex items-center m-2 px-2 py-1 rounded-full text-sm font-semibold"
+        :class="status.style"
       >
         <span> {{ status.name }} </span>
         <span class="ml-1">
@@ -37,16 +38,21 @@ const props = defineProps({
 });
 
 const statuses = reactive([
-  { name: "all", color: "blue", length: "allTasksLength", filter: "all" },
+  {
+    name: "all",
+    style: "text-blue-600 bg-blue-200 hover:bg-blue-300",
+    length: "allTasksLength",
+    filter: "all",
+  },
   {
     name: "undone",
-    color: "red",
+    style: "text-red-600 bg-red-200 hover:bg-red-300",
     length: "unCompletedTasksLength",
     filter: "unCompletedTasks",
   },
   {
     name: "done",
-    color: "green",
+    style: "text-green-600 bg-green-200 hover:bg-green-300",
     length: "completedTasksLength",
     filter: "completedTasks",
   },
