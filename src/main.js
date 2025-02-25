@@ -19,6 +19,7 @@ import {
   faCheck,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import router from "./router";
 
 const app = createApp(App);
 
@@ -33,9 +34,13 @@ app.use(pinia);
 //font awsome
 library.add(faComments, faTrash, faCheck, faXmark);
 app.component("font-awesome-icon", FontAwesomeIcon);
-app.mount("#app");
-
-
 app.use(VueGtag, {
   config: { id: "G-9JK3F8J7D4" },
 }, router); // Pass the router to track route changes
+
+app.use(router); // Use Router
+
+
+app.mount("#app");
+
+
