@@ -2,6 +2,10 @@ import { createApp } from "vue";
 import { createPinia, setActivePinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from "./App.vue";
+import VueGtag from "vue-gtag";
+ 
+
+
 import "./assets/css/style.css";
 //font awsome
 /* import the fontawesome core */
@@ -24,7 +28,14 @@ setActivePinia(pinia);
 pinia.use(piniaPluginPersistedstate);
 app.use(pinia);
 
+
+
 //font awsome
 library.add(faComments, faTrash, faCheck, faXmark);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");
+
+
+app.use(VueGtag, {
+  config: { id: "G-9JK3F8J7D4" }
+});

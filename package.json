@@ -15,7 +15,8 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "pinia": "^2.0.23",
     "pinia-plugin-persistedstate": "^2.3.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-gtag": "^2.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
