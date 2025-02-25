@@ -35,7 +35,7 @@ app.use(pinia);
 library.add(faComments, faTrash, faCheck, faXmark);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(VueGtag, {
-  config: { id: "G-9JK3F8J7D4" },
+  config: { id: 'G-FL73MRSFFG' },
 }, router); // Pass the router to track route changes
 
 app.use(router); // Use Router
