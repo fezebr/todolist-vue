@@ -37,5 +37,6 @@ app.mount("#app");
 
 
 app.use(VueGtag, {
-  config: { id: "G-9JK3F8J7D4" }
+  config: { id: "G-9JK3F8J7D4" },
+  debug: true
 });
