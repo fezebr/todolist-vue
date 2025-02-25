@@ -55,15 +55,4 @@ const handleStatus = (id) => tasksStore.handleStatus(id);
 //   //   const todoIndex = tasks.value.findIndex((item) => item.id === id);
 //   //   tasks.value[todoIndex].editInput = !tasks.value[todoIndex].editInput;
 // };
-
-const gtag = useGtag();
-
-const sendTestEvent = () => {
-  gtag("event", "test_event", {
-    event_category: "debug",
-    event_label: "VueGtag test event",
-  });
-};
-
-sendTestEvent();
 </script>
