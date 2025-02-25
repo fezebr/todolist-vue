@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia, setActivePinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from "./App.vue";
-import VueGtag from "vue-gtag";
+import VueGtag from "vue-gtag-next";
  
 
 
@@ -37,6 +37,8 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(VueGtag, {
   config: { id: 'G-FL73MRSFFG' },
 }, router); // Pass the router to track route changes
+
+
 
 app.use(router); // Use Router
 

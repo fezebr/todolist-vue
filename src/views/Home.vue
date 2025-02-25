@@ -33,6 +33,7 @@ import { ref } from "@vue/reactivity";
 import { useTasksStore } from "../stores/tasks.store";
 import { storeToRefs } from "pinia";
 import TasksTabs from "../components/TasksTabs.vue";
+import { useGtag } from "vue-gtag-next";
 
 const doneStatus = ref("all");
 const tasksStore = useTasksStore();
@@ -54,4 +55,15 @@ const handleStatus = (id) => tasksStore.handleStatus(id);
 //   //   const todoIndex = tasks.value.findIndex((item) => item.id === id);
 //   //   tasks.value[todoIndex].editInput = !tasks.value[todoIndex].editInput;
 // };
+
+const gtag = useGtag();
+
+const sendTestEvent = () => {
+  gtag("event", "test_event", {
+    event_category: "debug",
+    event_label: "VueGtag test event",
+  });
+};
+
+sendTestEvent();
 </script>
